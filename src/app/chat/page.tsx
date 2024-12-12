@@ -21,6 +21,14 @@ interface UserData {
   email: string
 }
 
+const LoadingDots = () => (
+  <span className="loading-dots">
+    <span className="dot">.</span>
+    <span className="dot">.</span>
+    <span className="dot">.</span>
+  </span>
+);
+
 export default function ChatPage() {
   const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -112,8 +120,8 @@ export default function ChatPage() {
     setLoading(true)
 
     try {
-      // If no current chat, create one first
-      if (!currentChat) {
+      // Create a new chat if there's no current chat and no existing chats
+      if (!currentChat && chats.length === 0) {
         const res = await fetch('/api/chats', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -124,14 +132,53 @@ export default function ChatPage() {
         if (!res.ok) throw new Error('Failed to create chat')
         const newChat = await res.json()
         setCurrentChat(newChat)
-        setChats([newChat, ...chats])
+        setChats([newChat])
+        
+        // Show user message immediately
+        const userMessage = { role: 'USER' as const, message }
+        const loadingMessage = { role: 'BOT' as const, message: 'loadingDots', loading: true }
+        
+        setCurrentChat(prev => prev ? {
+          ...prev,
+          chats: [...prev.chats, userMessage, loadingMessage]
+        } : null)
+        
+        setMessage('')
+
+        // Send to API
+        const messageRes = await fetch(`/api/chats/${newChat.id}/messages`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        })
+        
+        if (!messageRes.ok) throw new Error('Failed to send message')
+        const updatedChat = await messageRes.json()
+        setCurrentChat(updatedChat)
+        setChats([updatedChat])
+        return
       }
 
-      const chatId = currentChat?.id || chats[0].id
+      let chatToUse = currentChat;
       
+      // If no current chat but there are existing chats
+      if (!chatToUse) {
+        const res = await fetch('/api/chats', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            summary: `Chat ${new Date().toLocaleString()}`
+          })
+        })
+        if (!res.ok) throw new Error('Failed to create chat')
+        chatToUse = await res.json()
+        setCurrentChat(chatToUse)
+        setChats(prevChats => [...prevChats, chatToUse])
+      }
+
       // Show user message immediately
       const userMessage = { role: 'USER' as const, message }
-      const loadingMessage = { role: 'BOT' as const, message: '...', loading: true }
+      const loadingMessage = { role: 'BOT' as const, message: 'loadingDots', loading: true }
       
       setCurrentChat(prev => prev ? {
         ...prev,
@@ -141,7 +188,7 @@ export default function ChatPage() {
       setMessage('')
 
       // Send to API
-      const res = await fetch(`/api/chats/${chatId}/messages`, {
+      const res = await fetch(`/api/chats/${chatToUse.id}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
@@ -395,10 +442,14 @@ export default function ChatPage() {
                   className={`max-w-[70%] rounded-lg px-4 py-3 ${
                     msg.role === 'USER'
                       ? 'bg-blue-600 text-white font-medium'
-                      : 'bg-white dark:bg-[#404040] text-gray-800 dark:text-[#e8e8e8] font-medium'
-                  } shadow-sm ${msg.loading ? 'animate-pulse' : ''}`}
+                      : 'bg-white dark:bg-[#404040] text-gray-800 dark:text-[#e8e8e8] font-medium border border-gray-200 dark:border-transparent'
+                  }`}
                 >
-                  {msg.message}
+                  {msg.loading && msg.message === 'loadingDots' ? (
+                    <LoadingDots />
+                  ) : (
+                    msg.message
+                  )}
                 </div>
               </div>
             ))}
@@ -411,6 +462,14 @@ export default function ChatPage() {
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault()
+                    if (!loading && message.trim()) {
+                      handleSendMessage(e)
+                    }
+                  }
+                }}
                 placeholder="Type your message..."
                 className="flex-1 p-3 border dark:border-[#404040] rounded-lg focus:outline-none focus:ring-2 
                   focus:ring-blue-500 text-gray-700 dark:text-[#e8e8e8] font-medium 
@@ -439,32 +498,39 @@ export default function ChatPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
               Type "confirm" to delete this chat. This action cannot be undone.
             </p>
-            <input
-              type="text"
-              value={deleteConfirm}
-              onChange={(e) => setDeleteConfirm(e.target.value)}
-              placeholder="Type 'confirm'"
-              className="w-full p-2 border dark:border-[#404040] rounded-lg mb-4 
-                bg-white dark:bg-[#404040] text-gray-900 dark:text-[#e8e8e8]"
-            />
-            <div className="flex justify-end space-x-3">
-              <button
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setDeleteConfirm('')
-                }}
-                className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleDeleteChat}
-                disabled={deleteConfirm !== 'confirm'}
-                className="px-4 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
-              >
-                Delete
-              </button>
-            </div>
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              handleDeleteChat()
+            }}>
+              <input
+                type="text"
+                value={deleteConfirm}
+                onChange={(e) => setDeleteConfirm(e.target.value)}
+                placeholder="Type 'confirm'"
+                className="w-full p-2 border dark:border-[#404040] rounded-lg mb-4 
+                  bg-white dark:bg-[#404040] text-gray-900 dark:text-[#e8e8e8]"
+                autoFocus
+              />
+              <div className="flex justify-end space-x-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowDeleteModal(false)
+                    setDeleteConfirm('')
+                  }}
+                  className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={deleteConfirm !== 'confirm'}
+                  className="px-4 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+                >
+                  Delete
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
