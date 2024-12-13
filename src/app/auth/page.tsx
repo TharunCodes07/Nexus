@@ -37,7 +37,7 @@ export default function AuthPage() {
         throw new Error(json.error || 'Something went wrong')
       }
 
-      // Successful auth
+      
       router.push('/chat') // or wherever you want to redirect
       
     } catch (err) {

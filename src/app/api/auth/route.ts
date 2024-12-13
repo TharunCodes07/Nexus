@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const { email, password, name, isLogin } = await req.json();
 
     if (isLogin) {
-      // Login logic
+      
       const user = await db.user.findUnique({
         where: { email }
       });
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       );
 
     } else {
-      // Signup logic
+      
       const existingUser = await db.user.findUnique({
         where: { email }
       });
