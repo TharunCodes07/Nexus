@@ -18,7 +18,7 @@ export async function POST(
       );
     }
 
-    // Get bot response from Python backend
+    
     const botResponse = await fetch('http://localhost:8000/query', {
       method: 'POST',
       headers: {

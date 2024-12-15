@@ -38,7 +38,7 @@ export default function AuthPage() {
       }
 
       
-      router.push('/chat') // or wherever you want to redirect
+      router.push('/chats') 
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')

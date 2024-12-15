@@ -35,8 +35,7 @@ model Chat {
 model Data {
   id      Int    @id @default(autoincrement())
   chat_id Int
-  graph   String
-  files   Json   // Will store {file_url: "summary"}
+  files   Json   // Will store {file_url: "files"}
   chat    Chat   @relation("ChatData", fields: [chat_id], references: [id])
 
   @@index([chat_id])

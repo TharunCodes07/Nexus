@@ -1,0 +1,6 @@
+2024-12-15 15:34:56,367 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-12-15 15:34:56,368 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-12-15 15:34:56,368 - lightrag - INFO - Load KV full_docs with 0 data
+2024-12-15 15:34:56,368 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-12-15 15:34:56,378 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-12-15 15:34:57,430 - lightrag - INFO - Writing graph with 0 nodes, 0 edges

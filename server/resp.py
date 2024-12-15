@@ -3,7 +3,6 @@ from langchain_core.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain_groq import ChatGroq
 
-
 def convo_template(llm):
     template = '''Answer the question. A context has been provided which may or may not be helpful, utilise it to gather futher information if it is useful.
 

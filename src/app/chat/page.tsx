@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, Plus, Trash2, ChevronDown, LogOut, User, Pencil, Settings, Sun, Moon } from 'lucide-react'
+import { Menu, X, Plus, Trash2, ChevronDown, LogOut, User, Pencil, Settings, Sun, Moon, FileText, Video, File, Upload, ChevronRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useTheme } from '@/context/ThemeContext'
+import ReactMarkdown from 'react-markdown'
 
 interface Chat {
   id: number
@@ -21,6 +22,13 @@ interface UserData {
   email: string
 }
 
+interface FileData {
+  type: 'text' | 'pdf' | 'video'
+  name: string
+  content: string
+  originalName: string
+}
+
 const LoadingDots = () => (
   <span className="loading-dots">
     <span className="dot">.</span>
@@ -31,7 +39,7 @@ const LoadingDots = () => (
 
 export default function ChatPage() {
   const router = useRouter()
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [chats, setChats] = useState<Chat[]>([])
   const [currentChat, setCurrentChat] = useState<Chat | null>(null)
   const [message, setMessage] = useState('')
@@ -51,6 +59,13 @@ export default function ChatPage() {
     email: ''
   })
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const [showFileModal, setShowFileModal] = useState(false)
+  const [fileType, setFileType] = useState<'text' | 'pdf' | 'video' | null>(null)
+  const [textContent, setTextContent] = useState('')
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [uploadedFiles, setUploadedFiles] = useState<FileData[]>([])
+  const [expandedFile, setExpandedFile] = useState<string | null>(null)
+  const MAX_FILES = 10;
 
   useEffect(() => {
     fetchChats()
@@ -69,6 +84,24 @@ export default function ChatPage() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const chatId = searchParams.get('id');
+    
+    if (chatId) {
+      const selectedChat = chats.find(chat => chat.id === parseInt(chatId));
+      if (selectedChat) {
+        setCurrentChat(selectedChat);
+      }
+    }
+  }, [chats]);
+
+  useEffect(() => {
+    if (currentChat) {
+      fetchFiles()
+    }
+  }, [currentChat])
 
   const fetchUserData = async () => {
     try {
@@ -120,48 +153,9 @@ export default function ChatPage() {
     setLoading(true)
 
     try {
-      // Create a new chat if there's no current chat and no existing chats
-      if (!currentChat && chats.length === 0) {
-        const res = await fetch('/api/chats', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            summary: `Chat ${new Date().toLocaleString()}`
-          })
-        })
-        if (!res.ok) throw new Error('Failed to create chat')
-        const newChat = await res.json()
-        setCurrentChat(newChat)
-        setChats([newChat])
-        
-        // Show user message immediately
-        const userMessage = { role: 'USER' as const, message }
-        const loadingMessage = { role: 'BOT' as const, message: 'loadingDots', loading: true }
-        
-        setCurrentChat(prev => prev ? {
-          ...prev,
-          chats: [...prev.chats, userMessage, loadingMessage]
-        } : null)
-        
-        setMessage('')
-
-        // Send to API
-        const messageRes = await fetch(`/api/chats/${newChat.id}/messages`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        })
-        
-        if (!messageRes.ok) throw new Error('Failed to send message')
-        const updatedChat = await messageRes.json()
-        setCurrentChat(updatedChat)
-        setChats([updatedChat])
-        return
-      }
-
-      let chatToUse = currentChat;
+      let chatToUse: Chat | null = currentChat;
       
-      // If no current chat but there are existing chats
+      
       if (!chatToUse) {
         const res = await fetch('/api/chats', {
           method: 'POST',
@@ -171,12 +165,17 @@ export default function ChatPage() {
           })
         })
         if (!res.ok) throw new Error('Failed to create chat')
-        chatToUse = await res.json()
-        setCurrentChat(chatToUse)
-        setChats(prevChats => [...prevChats, chatToUse])
+        const newChat: Chat = await res.json()
+        chatToUse = newChat
+        setCurrentChat(newChat)
+
+        if (chats.length === 0) {
+          setChats([newChat])
+        } else {
+          setChats(prevChats => [...prevChats, newChat])
+        }
       }
 
-      // Show user message immediately
       const userMessage = { role: 'USER' as const, message }
       const loadingMessage = { role: 'BOT' as const, message: 'loadingDots', loading: true }
       
@@ -197,9 +196,11 @@ export default function ChatPage() {
       if (!res.ok) throw new Error('Failed to send message')
       const updatedChat = await res.json()
       setCurrentChat(updatedChat)
-      setChats(chats.map(chat => 
+      
+      setChats(prevChats => prevChats.map(chat => 
         chat.id === updatedChat.id ? updatedChat : chat
       ))
+
     } catch (error) {
       console.error('Error sending message:', error)
     } finally {
@@ -278,6 +279,104 @@ export default function ChatPage() {
     }
   }
 
+  const handleFileUpload = async () => {
+    if (uploadedFiles.length >= MAX_FILES) {
+      alert('Maximum 10 files allowed')
+      return
+    }
+
+    if (!currentChat) {
+      alert('Please create a chat first')
+      return
+    }
+
+    try {
+      if (fileType === 'text' && textContent) {
+        
+        const fileName = textContent.split(' ').slice(0, 3).join('_') + '.txt'
+        const res = await fetch('/api/files/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chatId: currentChat.id,
+            content: textContent,
+            fileName,
+            type: 'text'
+          })
+        })
+        if (!res.ok) throw new Error('Failed to save text')
+      } else if (selectedFile) {
+        const formData = new FormData()
+        formData.append('file', selectedFile)
+        formData.append('chatId', currentChat.id.toString())
+
+        if (fileType === 'pdf') {
+          
+          const pdfRes = await fetch('api/file2text/', {
+            method: 'POST',
+            body: formData
+          })
+          if (!pdfRes.ok) throw new Error('Failed to convert PDF')
+          const { text } = await pdfRes.json()
+
+          
+          await fetch('/api/files/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chatId: currentChat.id,
+              content: text,
+              fileName: `${selectedFile.name}_extracted.txt`,
+              type: 'pdf'
+            })
+          })
+        } else if (fileType === 'video') {
+          
+          const videoRes = await fetch('api/video2text/', {
+            method: 'POST',
+            body: formData
+          })
+          if (!videoRes.ok) throw new Error('Failed to convert video')
+          const { text } = await videoRes.json()
+
+          // Save extracted text
+          await fetch('/api/files/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chatId: currentChat.id,
+              content: text,
+              fileName: `${selectedFile.name}_extracted.txt`,
+              type: 'video'
+            })
+          })
+        }
+      }
+
+      // Refresh files list
+      fetchFiles()
+      setShowFileModal(false)
+      setFileType(null)
+      setTextContent('')
+      setSelectedFile(null)
+    } catch (error) {
+      console.error('Error handling file:', error)
+      alert('Failed to process file')
+    }
+  }
+
+  const fetchFiles = async () => {
+    if (!currentChat) return
+    try {
+      const res = await fetch(`/api/files/${currentChat.id}`)
+      if (!res.ok) throw new Error('Failed to fetch files')
+      const data = await res.json()
+      setUploadedFiles(data.files)
+    } catch (error) {
+      console.error('Error fetching files:', error)
+    }
+  }
+
   return (
     <div className="h-screen flex bg-gray-100 dark:bg-[#202123]">
       {/* Sidebar */}
@@ -299,32 +398,51 @@ export default function ChatPage() {
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-2">
-            {chats.map(chat => (
-              <div
-                key={chat.id}
-                className={`group flex items-center justify-between p-3 rounded-lg cursor-pointer 
-                  hover:bg-gray-100 dark:hover:bg-[#404040] 
-                  ${currentChat?.id === chat.id ? 'bg-gray-100 dark:bg-[#404040]' : ''}`}
-                onClick={() => setCurrentChat(chat)}
-              >
-                <span className="text-sm text-gray-700 dark:text-[#d1d1d1] font-medium truncate flex-1">
-                  {chat.summary}
-                </span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setChatToDelete(chat.id)
-                    setShowDeleteModal(true)
-                  }}
-                  className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-opacity"
+            {uploadedFiles.map((file) => (
+              <div key={file.name} className="space-y-2">
+                <div
+                  className="flex items-center justify-between p-3 rounded-lg 
+                    bg-gray-50 dark:bg-[#404040] cursor-pointer"
+                  onClick={() => setExpandedFile(expandedFile === file.name ? null : file.name)}
                 >
-                  <Trash2 size={16} />
-                </button>
+                  <div className="flex items-center space-x-3">
+                    {file.type === 'text' && <FileText size={18} className="text-blue-500" />}
+                    {file.type === 'pdf' && <File size={18} className="text-red-500" />}
+                    {file.type === 'video' && <Video size={18} className="text-purple-500" />}
+                    <div className="flex flex-col">
+                      <span className="text-sm text-gray-700 dark:text-[#d1d1d1] font-medium">
+                        {file.name}
+                      </span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {file.type}
+                      </span>
+                    </div>
+                  </div>
+                  <ChevronDown
+                    size={16}
+                    className={`text-gray-400 transform transition-transform duration-200 
+                      ${expandedFile === file.name ? 'rotate-180' : ''}`}
+                  />
+                </div>
+                {expandedFile === file.name && (
+                  <div className="p-3 text-sm text-gray-600 dark:text-gray-400 bg-gray-50 
+                    dark:bg-[#404040] rounded-lg ml-6 prose dark:prose-invert max-w-none">
+                    {file.type === 'pdf' ? (
+                      <ReactMarkdown>
+                        {file.content}
+                      </ReactMarkdown>
+                    ) : (
+                      file.content
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      
 
       {/* Main content */}
       <div className={`flex-1 ${sidebarOpen ? 'ml-64' : 'ml-0'} transition-margin duration-300 ease-in-out`}>
@@ -458,6 +576,16 @@ export default function ChatPage() {
           {/* Message input */}
           <div className="p-4 bg-white dark:bg-[#2c2c2e] border-t dark:border-[#404040]">
             <form onSubmit={handleSendMessage} className="flex space-x-4">
+              <button
+                type="button"
+                onClick={() => setShowFileModal(true)}
+                className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 
+                  dark:hover:bg-[#404040] rounded-lg flex items-center"
+                disabled={uploadedFiles.length >= MAX_FILES}
+              >
+                <Upload size={18} className="mr-2" />
+                <span>Add Files ({uploadedFiles.length}/{MAX_FILES})</span>
+              </button>
               <input
                 type="text"
                 value={message}
@@ -671,6 +799,153 @@ export default function ChatPage() {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* File Upload Modal */}
+      {showFileModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-[#2c2c2e] rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-[#e8e8e8] font-montserrat">
+                  Add Files
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  {uploadedFiles.length} of {MAX_FILES} files used
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  setShowFileModal(false)
+                  setFileType(null)
+                  setTextContent('')
+                  setSelectedFile(null)
+                }}
+                className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {uploadedFiles.length >= MAX_FILES ? (
+              <div className="text-center py-4">
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  You've reached the maximum limit of {MAX_FILES} files.
+                  Please delete some files before adding more.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {/* File type selection */}
+                <div className="grid grid-cols-3 gap-4">
+                  <button
+                    onClick={() => setFileType('text')}
+                    className={`p-4 rounded-lg flex flex-col items-center justify-center border 
+                      ${fileType === 'text' 
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
+                        : 'border-gray-200 dark:border-gray-700'}`}
+                  >
+                    <FileText size={24} className={fileType === 'text' ? 'text-blue-500' : 'text-gray-400'} />
+                    <span className="mt-2 text-sm font-medium">Text</span>
+                  </button>
+                  <button
+                    onClick={() => setFileType('pdf')}
+                    className={`p-4 rounded-lg flex flex-col items-center justify-center border 
+                      ${fileType === 'pdf' 
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
+                        : 'border-gray-200 dark:border-gray-700'}`}
+                  >
+                    <File size={24} className={fileType === 'pdf' ? 'text-blue-500' : 'text-gray-400'} />
+                    <span className="mt-2 text-sm font-medium">PDF</span>
+                  </button>
+                  <button
+                    onClick={() => setFileType('video')}
+                    className={`p-4 rounded-lg flex flex-col items-center justify-center border 
+                      ${fileType === 'video' 
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
+                        : 'border-gray-200 dark:border-gray-700'}`}
+                  >
+                    <Video size={24} className={fileType === 'video' ? 'text-blue-500' : 'text-gray-400'} />
+                    <span className="mt-2 text-sm font-medium">Video</span>
+                  </button>
+                </div>
+
+                {/* Input area based on selected type */}
+                {fileType === 'text' ? (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Enter your text
+                    </label>
+                    <textarea
+                      value={textContent}
+                      onChange={(e) => setTextContent(e.target.value)}
+                      className="w-full h-32 p-3 border dark:border-gray-700 rounded-lg 
+                        bg-white dark:bg-[#404040] text-gray-900 dark:text-gray-100
+                        focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+                      placeholder="Type or paste your text here..."
+                    />
+                  </div>
+                ) : fileType && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Upload {fileType.toUpperCase()} file
+                    </label>
+                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed 
+                      border-gray-300 dark:border-gray-700 rounded-lg">
+                      <div className="space-y-1 text-center">
+                        <Upload size={24} className="mx-auto text-gray-400" />
+                        <div className="flex text-sm text-gray-600 dark:text-gray-400">
+                          <label
+                            htmlFor="file-upload"
+                            className="relative cursor-pointer rounded-md font-medium text-blue-600 
+                              dark:text-blue-400 hover:text-blue-500"
+                          >
+                            <span>Upload a file</span>
+                            <input
+                              id="file-upload"
+                              type="file"
+                              className="sr-only"
+                              accept={fileType === 'pdf' ? '.pdf' : 'video/*'}
+                              onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                            />
+                          </label>
+                          <p className="pl-1">or drag and drop</p>
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {selectedFile ? selectedFile.name : `${fileType.toUpperCase()}`}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Upload button */}
+                <div className="flex justify-end space-x-3">
+                  <button
+                    onClick={() => {
+                      setShowFileModal(false)
+                      setFileType(null)
+                      setTextContent('')
+                      setSelectedFile(null)
+                    }}
+                    className="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 
+                      hover:bg-gray-100 dark:hover:bg-[#404040] rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleFileUpload}
+                    disabled={!fileType || (fileType === 'text' ? !textContent : !selectedFile)}
+                    className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg 
+                      hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

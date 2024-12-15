@@ -1,53 +1,48 @@
 from moviepy import VideoFileClip
 import speech_recognition as sr
 import os
+import llama_parse
+from llama_parse import LlamaParse
+import nest_asyncio
 
-def video_to_text(video_path, output_folder):
-    # Create the output directory if it doesn't exist
-    os.makedirs(output_folder, exist_ok=True)
+nest_asyncio.apply()
 
-    # Output paths
-    output_audio_path = os.path.join(output_folder, "output_audio.wav")
-    output_text_path = os.path.join(output_folder, "output_text.txt")
 
-    def video_to_audio(video_path, output_audio_path):
-        clip = VideoFileClip(video_path)
-        audio = clip.audio
-        audio.write_audiofile(output_audio_path)
 
-    def audio_to_text(audio_path):
-        recognizer = sr.Recognizer()
-        audio = sr.AudioFile(audio_path)
+def pdf_to_text(pdf):
+    path = f"D:/Coding/next/nexus/public/chat/{pdf}"
+    print(path)
+    document = LlamaParse(result_type = "markdown").load_data(path)
+    final_text = "\n\n".join(doc.text for doc in document)
+    return final_text
 
-        with audio as source:
-            audio_data = recognizer.record(source)
 
-            try:
-                text = recognizer.recognize_whisper(audio_data)
-            except sr.UnknownValueError:
-                print("Speech recognition could not understand the audio.")
-                text = ""
-        return text
 
-    # Check if video exists
-    if not os.path.isfile(video_path):
-        raise FileNotFoundError("Video file not found. Please check the path.")
-
-    print(f"Processing video: {video_path}")
+def video_to_text(video_path):
+    print('done0')
+    full_video_path = f"D:/Coding/next/nexus/public/chat/{video_path}"
     
-    # Extract audio from the video
-    video_to_audio(video_path, output_audio_path)
+    # Create audio path in the same directory as video
+    audio_filename = os.path.splitext(video_path)[0] + "_audio.wav"
+    temp_audio_path = f"D:/Coding/next/nexus/public/chat/{audio_filename}"
+    
+    # Extract audio and save it
+    clip = VideoFileClip(full_video_path)
+    audio = clip.audio
+    audio.write_audiofile(temp_audio_path)
+    clip.close()
     
     # Convert audio to text
-    text_data = audio_to_text(output_audio_path)
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(temp_audio_path) as source:
+        audio_data = recognizer.record(source)
+        try:
+            text = recognizer.recognize_whisper(audio_data)
+        except sr.UnknownValueError:
+            print("Speech recognition could not understand the audio.")
+            text = ""
+            
+    # Clean up temporary file
+    os.remove(temp_audio_path)
     
-    # Save the text data to a file
-    with open(output_text_path, "w") as file:
-        file.write(text_data)
-    print(f"Text data saved to {output_text_path}")
-    
-    # Clean up the audio file
-    os.remove(output_audio_path)
-    print("Intermediate audio file removed.")
-    
-    return text_data
+    return text
