@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d2" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d1" for="node" attr.name="description" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_type" attr.type="string"/>
+<graph edgedefault="undirected"><node id="&quot;THARUNKUMAR S&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"Name of the individual"</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;PEDIPAL&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"App created by TharunKumar S focused on AI-powered Pediatrician app"&lt;SEP&gt;"Pedipal is a project created by TharunKumar S that focuses on AI based pediatrician app"</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;THARUNCODES07&quot;">
+  <data key="d0">"PERSON"</data>
+  <data key="d1">"TharunKumar S" is a person who has various skills and interests in AI/ML, Full stack development, Research and Development"</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;COIMBATORE&quot;">
+  <data key="d0">"GEO"</data>
+  <data key="d1">"City where TharunKumar S lives and works."&lt;SEP&gt;"Coimbatore is the location where TharunKumar S lives and works."</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;PYTHON&quot;">
+  <data key="d0">"LANGUAGE"</data>
+  <data key="d1">"Programming language"</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;CLOUD KITCHEN WEBSITE DEVELOPMENT&quot;">
+  <data key="d0">"ORGANIZATION"</data>
+  <data key="d1">"The Cloud Kitchen Website Development project is a result of TharunKumar S's work in developing web applications, including a website for cloud kitchen."&lt;SEP&gt;"The website developed by TharunKumar S for a cloud kitchen"</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;IIT MADRAS&quot;">
+  <data key="d0">"GEO"</data>
+  <data key="d1">"Institute where TharunKumar S completed courses"</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;SOC PREDICTION&quot;">
+  <data key="d0">"EVENT"</data>
+  <data key="d1">"SOC Prediction is the event related to TharunKumar S's development of an LSTM model for predicting battery charge."&lt;SEP&gt;"The project that TharunKumar S worked on to predict SOC of Lithium-ion batteries."</data>
+  <data key="d2">chunk-0d97eeec5889cedbc988c0ce21c2e309</data>
+</node>
+<node id="&quot;TEST DATA SET&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Data set not used to train the model, used to validate its performance"</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;LOSS FUNCTION&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"A measure of how well the model fits the data; minimized through coefficients"</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;REGRESSION LINE&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"A line that represents the relationship between input and output variables"</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;LINEAR REGRESSION&quot;">
+  <data key="d0">"EVENT"</data>
+  <data key="d1">"A method for fitting a line through some data points to make predictions on unknown data."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;REGRESSION COEFFICIENTS&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Values that control how input variables relate to output variables in a linear regression model"</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;MACHINE LEARNING LIBRARIES&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Tools that automate finding optimal coefficients for the regression line"</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;SQUARED ERRORS&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Differences between data points and the predictions of the regression line, squared to calculate a loss function"</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;INPUT VARIABLES&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Variables used in a linear regression model that influence the output variable."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;TRAINING DATA SET&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Data set used to train the linear regression model."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;COEFFICIENTS (BETA 1, BETA 0)&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Parameters used to estimate the relationship between input and output variables in a linear regression model."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;RESIDUALS&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"Difference between data points and the predictions of the regression line."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;OUTPUT VARIABLE&quot;">
+  <data key="d0">"CONCEPT"</data>
+  <data key="d1">"The dependent variable of a linear regression model."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+<node id="&quot;LANYARD REGRESSION&quot;">
+  <data key="d0">"EVENT"</data>
+  <data key="d1">"A statistical technique for modeling the relationship between an output variable and one or more input variables."</data>
+  <data key="d2">chunk-f6d775cd3373b61ba68adc73c078d1dd</data>
+</node>
+</graph></graphml>

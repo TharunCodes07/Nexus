@@ -1,0 +1,52 @@
+THARUNKUMAR S+91 8778154634 | senthietk@gmail.com |
+
+§ TharunCodes07
+
+Coimbatore, India
+
+# EDUCATION
+
+B.Tech CSE-AI
+
+School of AI, Amrita Vishwa Vidyapeetam, Coimbatore, India
+
+GPA: 8.6/10.00
+
+# PROJECTS
+
+# Pedipal – AI Based Paediatrician app
+
+Python, Langchain, Hugginface, Edamam, Azure, React Native, Firebase, Generative AI, RAG
+
+- Developed a full-stack pediatrician app with an interactive UI and real-time updates, enhancing user experience and providing seamless access to healthcare information for parents.
+- Implemented a personalized chatbot that offers medical advice, helping parents manage their children’s healthcare and providing timely guidance.
+- Integrated Edamam API for dietary recommendations and Azure API for secure data storage, ensuring reliable and valuable nutrition and wellness insights for parents.
+
+# SOC Prediction - LSTM based model for SOC prediction
+
+Tools: Python, TensorFlow
+
+- Led the development of an LSTM-based model to predict the State of Charge (SOC) of lithium-ion batteries, focusing on accurate time-series prediction.
+- Managed data preprocessing and end-to-end model development, optimizing performance through hyper parameter tuning and validation.
+- Successfully deployed the model, achieving high accuracy in SOC predictions, contributing to improved battery management solutions.
+
+# Cloud Kitchen Website Development
+
+Tools: HTML, CSS, JavaScript, Node js, MongoDB
+
+- Developed a dynamic website for a cloud kitchen using HTML, CSS, and JavaScript.
+- Built a robust back end with Express.js to ensure smooth functionality.
+- Designed a responsive, user-friendly interface to improve customer engagement.
+
+# SKILLS
+
+- Areas of Interest: Research and Development, AI/ML application, Full stack Development
+- Languages: C, Python, Java, JavaScript, Typescript, Node Js, Go, React Native, SQL
+- Technologies/Frameworks: LLM, RAG, HuggingFace, Machine Learning, Deep Learning, Generative AI, Firebase, MySQL
+
+# CERTIFICATES
+
+- Intro To ML And Deep Learning | IIT Madras - January 2024
+- Large Language Models | IIT Madras - January 2024
+- Fullstack Development | IIT Madras - January 2024
+- Information Architecture | Udemy - June 2023

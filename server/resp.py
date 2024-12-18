@@ -8,11 +8,11 @@ def convo_template(llm):
 
     Question: {query}
 
-    Context: 
+    Context: {conntext}
 
     Respond with only the answer, do not add anything unnecessary.
     '''
-    prompt = PromptTemplate(input_variables=['query'], template=template)
+    prompt = PromptTemplate(input_variables=['query','context'], template=template)
     conversation = LLMChain(llm=llm, prompt=prompt, verbose=False)
     return conversation
 

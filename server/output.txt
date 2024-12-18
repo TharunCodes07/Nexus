@@ -1,0 +1,378 @@
+# LSTM-Driven State of Charge Estimation for Battery Management
+
+# Tharunkumar S
+
+# Thanuj G
+
+# Charuvarthan T
+
+Amrita School of Artificial Intelligence
+
+Amrita Vishwa Vidyapeetham
+
+Coimbatore, Tamil Nadu, India
+
+cb.sc.u4aie23343@cb.students.amrita.edu
+
+# Sai Karthikeya V
+
+# Pradeesh Prem Kumar
+
+# Rahul Satheesh
+
+Amrita School of Artificial Intelligence
+
+Amrita Vishwa Vidyapeetham
+
+Coimbatore, Tamil Nadu, India
+
+cb.sc.u4aie23345@cb.students.amrita.edu
+
+pradeesh321@gmail.com
+
+s rahul1@cb.amrita.edu
+
+theAbstract—This research presents a method for estimating state of charge (SOC) of lithium-ion batteries using a neural network model. The primary challenges of this study include accurately capturing the nonlinear behavior of battery SOC under various driving conditions and temperatures. The approach involved initially cleaning the dataset and calculating the SOC values. The data is then scaled appropriately, and the neural network model is trained using diverse driving cycles and a combination of these cycles at various temperatures. The trained model was evaluated on both a single driving cycle and a mixed driving cycle, which integrated all driving conditions. The results demonstrate that the model achieves an R2 score of over 0.98 in SOC estimation, indicating its robustness and reliability across different scenarios. This high level of accuracy suggests that the neural network model worked well in real-life battery management systems, making accurate SOC predictions in a wide range of operating conditions.
+
+Index Terms—SOC(State Of Charge), Lithium-ion Batteries, Neural Network, Battery Management Systems, Driving Cycles
+
+# I. INTRODUCTION
+
+Lithium-ion batteries play a vital role in electric vehicles (EVs) and aim to perform well in short to medium-range distances. The key idea behind the usage of lithium-ion (Li-ion) batteries is their high energy density, which in turn leads to a high battery life cycle. The usage of Li-ion cells in EVs indeed reduces pollution. Given the extensive use of Li-ion cells, there is now a need to optimize battery usage, which follows the Battery Management System (BMS). The BMS acts as a key in ensuring the safe, reliable, and efficient management of battery-powered applications. The key factor that promotes long battery life is preventing overcharging and deep discharging, which, if left unmonitored, may lead to reduced performance. This paper focuses on state of charge (SOC) estimation, a technique the Battery Management System (BMS) uses to optimize battery usage and improve performance. The SOC is mainly the ratio of the capacity of the battery that is remaining by the total capacity of the battery, which is a relative quantity. There are quite a few ways for the estimation of SOC, including coulomb counting, open circuit voltage, and model-based approaches. However, these methods often don’t account for behavioral changes due to factors like temperature variations, battery aging, and complex use patterns. Battery usage and discharging patterns may vary as per the usage pattern; on a highway, the vehicle travels at an almost constant speed, resulting in a more consistent energy demand from the battery. At the same time, if the vehicle is traveling on a city road where the speed keeps varying due to factors like bad roads or traffic, this leads to rapid battery discharge.
+
+There are certain approaches made to overcome the challenges faced. M. Sidhu developed a model [1] that shows a variety of methods for calculating SOC, a few of which include coulomb counting, electromotive force, and electroscope methods implemented in the models to calculate SOC. One report illustrates the idea of experimentally validating the coulomb counting method under current variable profiles [2]. This idea also revolves around the fuzzy experimental logic along with the Kalman filter, which improves the performance of the model and produces better outcomes. Wei He et.al. [3] created a model that uses neural networks (NNs) for model training. This model has a favorable number of layers and structures, including the activation functions used for better outcomes in the final layer. The time series data here uses current, voltage, and temperature measurements. The time series estimating model illustrated in [4] can be optimized with the firefly algorithm, which is mainly used to improve the accuracy of the model in SOC estimation. Variants of Stochastic Gradient Descent (SGD) with an improved learning rate perform better in the models in distributed systems [5]. It seems the model could be improved by using adaptive learning rate schemes like Adam and AdaGrad. The model used in this paper uses Look-Ahead optimizers to update the first weights for better performance. Using such optimizers has been noted.
+
+to help in getting convergence earlier with a minimum number of computational steps. PyTorch, a machine learning model used in NNs, is used in Adam Paskez’s work [6] on SOC estimation, which helps in parallel computation. The key idea behind its use in the paper is to reduce memory usage and increase the speed at which the data is trained, and the model succeeded in doing so with the amount of data. Both Recurrent Neural Networks (RNNs) and Convolutional Neural Networks (CNNs) have shown promising results in sequence modeling. CNNs have been used recently in sequence modeling, adding recurrent pooling between a series of convolutional layers [7], or studying neural translation without paying attention. Kalman filter is used for better estimation [8], but this has one issue: the coupling effects aren’t considered, hence it lacks accuracy. New research [9] shows that deep learning models, specifically deep LSTM with different activation functions, can make SOC estimation more accurate and reduce the amount of work that needs to be done. Recent advancements in SOC estimation for EVs leverage deep learning, classifying methods into structured and unstructured approaches while analyzing factors such as feature engineering and hyper-parameter optimization [10]. Future directions for enhancing lithium-ion battery SOC estimation are also discussed. Zerveas et al used a transformer model [11], which is a new class of machine learning model capable of handling time series data. Canonical RNN equations are derived from the equation from the initial model made in one such work [12] that specifies the method that eventually arrives at the Long Short-Term Memory (LSTM) system architecture. Some papers fill this gap and address the problems of time series data, which also invokes the idea of LSTM architecture.
+
+In this research, the main contribution lies in developing an accurate estimation of the state of charge (SOC) of lithium-ion batteries. We leverage LSTM neural networks integrated with a Simple Moving Average (SMA) filter to enhance prediction accuracy. This approach effectively captures the nonlinear and dynamic behavior of batteries under varying temperature conditions. By addressing the limitations of traditional SOC estimation methods, our model ensures precise and reliable battery management, ultimately optimizing performance and extending battery life in real-world applications.
+
+# II. METHODOLOGY
+
+# A. SOC Calculation – Coulomb Counting Approach
+
+Coulomb counting is one of the most popular techniques used to calculate SOC. This method calculates the charge that is being transferred to the battery while charging and the charge that gets transferred from the battery to the load; it is mathematically expressed as,
+
+SOC(t) = SOC(t0) + 1 ∫t0t (I(t) dt) / CN
+
+where:
+
+- SOC(t0) is the initial state of charge at time t0.
+- CN is the nominal capacity of the battery.
+
+The term ∫t0t (I(t) dt) / Capacityn represents the change in charge over time. This integral calculates the net charge that has flowed into or out of the battery from t0 to t. Let ∆Q = ∫t0t I(t) dt, which is the net charge change. Then:
+
+SOC(t) = Qinit + ∆Q / Capacityn
+
+The current capacity of the battery at time t, Capacityr, is the sum of the initial change and the net change over the time t0 to t:
+
+Capacityr = Qinit + ∆Q
+
+The SOC as a fraction of the nominal capacity is:
+
+SOC(t) = Capacityn / Capacityr
+
+To express the SOC as a percentage, multiply by 100:
+
+SOC% = (Capacityr / Capacityn) × 100
+
+Under controlled conditions, Coulomb counting can provide SOC estimates with an accuracy of ±1-5%, meaning the estimated SOC can be within 1-5% above or below the actual SOC.
+
+# B. Proposed Methodology for SOC Prediction in Lithium-Ion Batteries
+
+This study introduces an innovative approach for accurately predicting the SOC of lithium-ion batteries across diverse temperature conditions. Accurate SOC estimation is crucial for ensuring optimal performance and longevity of batteries in various applications. Traditional methods face significant challenges in capturing batteries’ nonlinear and dynamic behavior, particularly under varying temperatures, which is a crucial factor in practical applications.
+
+To address these challenges, a method that integrates LSTM neural networks with a Simple Moving Average (SMA) filter for noise reduction has been used. LSTM networks are capable of learning and remembering long-term dependencies within sequential data, thus making them a prime candidate for capturing patterns of battery behavior [13]. Additionally, the SMA filter is employed to smooth out the predictions, mitigating the impact of noise and enhancing the stability of the results.
+
+# C. Methodological Framework
+
+Neural networks are mathematical models designed to mimic the brain’s structure and function. They consist of interconnected layers of neurons that process input data to generate outputs. Connections between neurons have weights that are adjusted during training to minimize model loss.
+
+Recurrent Neural Networks (RNNs) are a class of neural networks specifically designed to handle sequential data. Unlike classical feed-forward neural networks, RNNs perform better in scenarios where the order of data points matters by incorporating temporal dynamics, as they allow information to persist. However, RNNs come with certain drawbacks, such as exploding and vanishing gradients, which hinder their performance over long sequences by either amplifying or diminishing the gradients excessively.
+
+In RNNs, the hidden state ht at time step t is calculated as follows:
+
+ht = tanh(Wh · ht−1 + Wx · xt + bh)
+
+where:
+
+- tanh is the activation function.
+- Wh and Wx are the weights for the hidden state and input, respectively.
+- ht−1 is the previous hidden state.
+- xt is the current input.
+- bh is the bias term.
+
+To address these issues, LSTM networks introduce a unique architecture that includes memory cells and a gating mechanism that helps control the flow of information. Their ability to retain and process information over long sequences without the gradient issues encountered by RNNs makes them highly effective for sequential tasks [14,1].
+
+They achieve this through a memory cell with three gates, the forget gate ft, the input gate it, and the output gate ot.
+
+ft is responsible for controlling the extent to which the previous cell state Ct−1 is remembered:
+
+ft = σ(Wf · [ht−1, x] + bf)
+
+where:
+
+- σ is the sigmoid function.
+- Wf stands for the weights.
+- ht−1 is the previous hidden state.
+- xt is the current input.
+- bf is the bias term.
+
+it is responsible for controlling the extent to which the new information has to be stored in the cell state:
+
+it = σ(Wi · [ht−1, xt] + bi)
+
+C˜t = tanh(WC · [ht−1, xt] + bC)
+
+Ct = ft · Ct−1 + it · C˜t
+
+The output gate ot controls the information to be outputted based on the cell state:
+
+ot = σ(Wo · [ht−1, x] + bo)
+
+ht = ot · tanh(Ct)
+
+where ht represents the current hidden state output. This gated architecture of the LSTM model allows it to selectively remember and forget information over extended sequences, making it a powerful tool when working with sequential data.
+
+An SMA filter is employed to mitigate the impact of noise inherent in sensor measurements. SMA is calculated using the equation:
+
+SMAt = (xt−1 + xt−2 + ... + xt−N) / N
+
+where:
+
+- SMAt is the Simple Moving Average at time t,
+- xt−1, xt−2, ..., xt−N are the data points over the past N periods,
+- N is the number of periods used to calculate the SMA.
+
+This filtering mechanism smooths out short-term fluctuations in SOC predictions, thereby enhancing the stability and accuracy of the final estimations.
+
+# D. Dataset
+
+The data used is a public dataset with tests performed by Dr. Phillip Kollmeyer at McMaster University in Hamilton, Ontario, Canada [16]. A 3Ah LG HG2 cell is used in an 8 cu. ft. thermal chamber with a 75amp, 5 volt Digatron Firing Circuits Universal Battery Tester channel with a voltage and current accuracy of 0.1% of full scale. It consists of United States Highway Driving Schedule (US06), Urban Dynamometer Driving Schedule (UDDS), California Unified Cycle (LA92) and Highway Fuel Economy Test (HWFET).
+
+# III. RESULTS AND DISCUSSION
+
+Figure 3 shows the predicted SOC model for the US06 cycle, which combines urban and highway driving with high-speed cruising, stop-and-go traffic, and rapid accelerations to simulate real-world conditions. The black curve shows actual SOC values from Coulomb counting, while the red curve shows estimated values. Model performance was evaluated using Root Mean Square Error (RMSE), Mean Absolute Error (MAE), and R2 metrics.
+
+# Filtered SOC
+
+|Current Voltage|SOC Ricakation Ov|Cured|Simple Moving Average|
+|---|---|---|---|
+|SOC predicted using the model|SOC predicted using the model|SOC predicted using the model|SOC predicted using the model|
+
+# E. Training and Testing of the model
+
+When training a model, it learns to map independent features to predict the dependent variable. The model’s success largely depends on the quality and relevance of the provided features. Effective training requires ample data that guides the prediction of the dependent variable.
+
+When it comes to SOC prediction, features such as Voltage, Current and Temperature can be used as input features. When a battery has a higher capacity, the voltage is at its highest and reduces as the capacity decreases. One other important factor which influences SOC values is the temperature at which the battery is functioning.
+
+To accommodate all these factors into training a dataset which was made from observations across six different temperatures (-20 °C, -10 °C, 0 °C, 10 °C, 25 °C and 40 °C) on different kinds of driving cycles having different driving patterns (US06, UDDS, LA92, HWFET & and two mixed files from each temp which is a combination of all these driving cycles) with an overall size of about 23,62,098 rows thus leading to different discharge rate has been provided to the model for it to learn. While the SOC was calculated it was ensured that the battery aging was taken care of. As the battery was continuously used for testing its total capacity value dropped thus affecting the final total SOC value.
+
+Before providing the model with this data, the data has been preprocessed into X (independent features) and Y (dependent feature) NumPy arrays. The data is scaled into the range of [0,1] to give the model an insight into the range in which it has to predict which helps the model converge faster and also makes sure that all features are taken into consideration equally and no feature dominates over the other because of its high magnitude. The MinMax Scalar has been used for this purpose.
+
+Each driving cycle is scaled separately and then added to the feature vectors. This is because each cycle consists of values from 100% - 0% and so scaling them this way will preserve the intricate patterns of the dataset and the finally processed data was fit into the model with an ADAM optimization function along with the LogCosh loss function.
+
+The Log-Cosh loss function is defined as:
+
+L(y, ˆ) = yi log (cosh (yi − ˆ))
+
+where:
+
+• y is the true value,
+
+• yˆ is the predicted value,
+
+• cosh(x) is the hyperbolic cosine function defined as cosh(x) = (ex + e−x)/2.
+
+On training, it is noticed that the model’s predictions are extremely noisy and irrelevant when a low sequence length is used, once the sequence length is increased over 100 the model’s loss goes down rapidly, the reason behind this is that the values in the dataset have only a short change of SOC value across each instance. Due to this, the model is unable to learn any patterns out of it due to the very less change in SOC values. In the end after a lot of experimentation, 150 is finalized as the ideal sequence length.
+
+To ensure the model doesn’t overfit the training dataset, dropouts and callbacks like early stopping and learning rate schedulers are used. A patience value of 3 is used for the learning rate scheduler with a reduction factor of 0.5 and a patience value of 6 is used for the early stopping. Once the model is trained and applied to the testing dataset, the noise in the predicted values is reduced using an SMA filter with a window size of 150. These hyper-parameters were determined experimentally.
+
+# Fig. 3. SOC estimation results for US06 testing data
+
+# a) 0 °C
+
+|1.0|Calculated|1.0|Predicted|
+|---|---|---|---|
+|0.8| |0.8| |
+|0.6| |0.6| |
+|0.4| |0.4| |
+|0.2| |0.2| |
+|0.0| |0.0| |
+|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|
+
+# b) 10 °C
+
+|1.0|Calculated|1.0|Predicted|
+|---|---|---|---|
+|0.8| |0.8| |
+|0.6| |0.6| |
+|0.4| |0.4| |
+|0.2| |0.2| |
+|0.0| |0.0| |
+|500 1000 1500 2000 2500 3000 Time (s)|500 1000 1500 2000 2500 3000 Time (s)|500 1000 1500 2000 2500 3000 Time (s)|500 1000 1500 2000 2500 3000 Time (s)|
+
+# c) 25 °C
+
+|1.0|Calculated|1.0|Predicted|
+|---|---|---|---|
+|0.8| |0.8| |
+|0.6| |0.6| |
+|0.4| |0.4| |
+|0.2| |0.2| |
+|0.0| |0.0| |
+|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|
+
+# d) 40 °C
+
+|1.0|Calculated|1.0|Predicted|
+|---|---|---|---|
+|0.8| |0.8| |
+|0.6| |0.6| |
+|0.4| |0.4| |
+|0.2| |0.2| |
+|0.0| |0.0| |
+|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|500 1000 1500 2000 2500 Time (s)|
+
+# e) -10 °C
+
+|1.0|Calculated|1.0|Predicted|
+|---|---|---|---|
+|0.8| |0.8| |
+|0.6| |0.6| |
+|0.4| |0.4| |
+|0.2| |0.2| |
+|0.0| |0.0| |
+|500 1000 1500 2000 Time (s)|500 1000 1500 2000 Time (s)|500 1000 1500 2000 Time (s)|500 1000 1500 2000 Time (s)|
+
+# f) -20 °C
+
+|1.0|Calculated|1.0|Predicted|
+|---|---|---|---|
+|0.8| |0.8| |
+|0.6| |0.6| |
+|0.4| |0.4| |
+|0.2| |0.2| |
+|0.0| |0.0| |
+|500 1000 1500 2000 Time (s)|500 1000 1500 2000 Time (s)|500 1000 1500 2000 Time (s)|500 1000 1500 2000 Time (s)|
+
+X-Axis (Time): The x-axis represents the time interval in seconds, with each reading having a gap of 0.1 seconds. Y-Axis (SOC): The y-axis represents the SOC values ranging from 0 to 100.
+
+# TABLE I
+
+# PERFORMANCE EVALUATION - US06
+
+|Temperature|RMSE|MAE|R2|
+|---|---|---|---|
+|0|1.98|2.12|0.994|
+|10|1.86|2.13|0.994|
+|25|1.14|1.46|0.997|
+|40|1.09|1.35|0.997|
+|-10|1.22|1.57|0.996|
+|-20|1.02|1.29|0.997|
+
+# TABLE II
+
+# PERFORMANCE EVALUATION - MIXED
+
+|Temperature|RMSE|MAE|R2|
+|---|---|---|---|
+|0|1.68|2.71|0.989|
+|10|1.08|1.47|0.997|
+|25|3.10|3.62|0.982|
+|40|2.68|3.25|0.986|
+|-10|1.43|1.84|0.995|
+|-20|2.47|3.18|0.986|
+
+The model demonstrates high accuracy across all temperatures on the US06 cycle and performs well under mixed cycles, especially at 10°C and -10°C. For other temperatures on mixed cycles, the RMSE and MAE values are slightly higher, with an R2 around 98%, likely due to the increased variability and complexity in the combined dataset.
+
+Compared to traditional SOC estimation methods, like the Extended Kalman Filter (EKF) and Particle Filter (PF), the neural network model offers greater accuracy and resilience to nonlinearities, particularly across temperature variations. Lower RMSE and MAE values and a consistent R² close to 98% demonstrate its superior ability to capture complex battery behavior under real-world conditions.
+
+# IV. CONCLUSION
+
+In this paper, the application of an LSTM model combined with SMA for SOC estimation in BMS. By leveraging the sequential nature of battery data, the LSTM-based model has demonstrated significant improvements. It achieved an R2 score of over 0.98, which is a substantial improvement compared to traditional models. The LSTM model generalizes well over a wide range of temperatures. It maintains consistent prediction accuracy, making it more reliable in practical applications. The integration of SMA enhances the reliability of the predictions. It smooths out short-term fluctuations and noise. The consistent high accuracy across various scenarios highlights the robustness and effectiveness of the LSTM model in real-world applications. This innovative approach opens new possibilities for advanced battery management solutions. It could further fine-tune the process and improve the model’s ability to identify different driving cycles and their patterns, especially when combined. This contributes to more reliable battery systems in the future.
+
+# REFERENCES
+
+[1] M. Sidhu, “Design and development of advanced machine learning algorithms for lithium-ion battery state-of-charge estimation,” Ph.D. dissertation, 2019.
+
+[2] B. Zine, et al., “Experimentally validated coulomb counting method for battery state-of-charge estimation under variable current profiles,” Energies, vol. 15, no. 21, p. 8172, 2022.
+
+[3] W. He, et al., “State of charge estimation for Li-ion batteries using neural network modeling and unscented Kalman filter-based error cancellation,” International Journal of Electrical Power & Energy Systems, vol. 62, pp. 783-791, 2014.
+
+[4] M. S. Hossain Lipu, et al., “State of charge estimation in lithium-ion batteries: A neural network optimization approach,” Electronics, vol. 9, no. 9, p. 1546, 2020.
+
+[5] M. Zhang, et al., “Lookahead optimizer: k steps forward, 1 step back,” in Advances in Neural Information Processing Systems, vol. 32, 2019.
+
+[6] A. Paszke, et al., “Pytorch: An imperative style, high-performance deep learning library,” in Advances in Neural Information Processing Systems, vol. 32, 2019.
+
+[7] J. Gehring, et al., “Convolutional sequence to sequence learning,” in International Conference on Machine Learning, PMLR, 2017.
+
+[8] J. Wu, et al., “Research on modeling and SOC estimation of lithium iron phosphate battery at low temperature,” Energy Procedia, vol. 152, pp. 556-561, 2018.
+
+[9] P. P. Kumar, R. Satheesh and H. H. Alhelou, ”Impact of Activation Functions in Deep Learning Based State of Charge Estimation for Batteries,” 2024 IEEE 4th International Conference on Sustainable Energy and Future Electric Transportation (SEFET), Hyderabad, India, 2024, pp. 1-6.
+
+[10] Yuefeng Liu, Yingjie He, Haodong Bian, Wei Guo, Xiaoyan Zhang, ” A review of lithium-ion battery state of charge estimation based on deep learning: Directions for improvement and future trends”, Journal of Energy Storage, Volume 52, Part A, 2022.
+
+[11] G. Zerveas, et al., “A transformer-based framework for multivariate time series representation learning,” in Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining, 2021.
+
+[12] A. Sherstinsky, 2020. “Fundamentals of recurrent neural network (RNN) and long short-term memory (LSTM) network,” Physica D: Nonlinear Phenomena, vol. 404, p. 132306.
+
+[13] K. Greff, R.K. Srivastava, J. Koutník, B.R. Steunebrink and J. Schmidhu- ber, “LSTM: A search space odyssey,” IEEE transactions on neural networks and learning systems, vol. 28, no. 10, pp. 2222-2232, 2016.
+
+[14] M. Sundermeyer, R. Schlüter and H. Ney, “Lstm neural networks for language modeling,” in Interspeech, vol. 2012, pp. 194-197, 2012.
+
+[15] G. Rajendran, P. Poornachandran and B. Chitturi, ”Deep learning model on stance classification,” 2017 International Conference on Advances in Computing, Communications and Informatics (ICACCI), Udupi, India, 2017, pp. 2407-2409.
+
+[16] Kollmeyer, Philip; Vidal, Carlos; Naguib, Mina; Skells, Michael (2020), ”LG 18650HG2 Li-ion Battery Data and Example Deep Neural Network xEV SOC Estimator Script”, Mendeley Data, V3.
+THARUNKUMAR S+91 8778154634 | senthietk@gmail.com |
+
+§ TharunCodes07
+
+Coimbatore, India
+
+# EDUCATION
+
+B.Tech CSE-AI
+
+School of AI, Amrita Vishwa Vidyapeetam, Coimbatore, India
+
+GPA: 8.6/10.00
+
+# PROJECTS
+
+# Pedipal – AI Based Paediatrician app
+
+Python, Langchain, Hugginface, Edamam, Azure, React Native, Firebase, Generative AI, RAG
+
+- Developed a full-stack pediatrician app with an interactive UI and real-time updates, enhancing user experience and providing seamless access to healthcare information for parents.
+- Implemented a personalized chatbot that offers medical advice, helping parents manage their children’s healthcare and providing timely guidance.
+- Integrated Edamam API for dietary recommendations and Azure API for secure data storage, ensuring reliable and valuable nutrition and wellness insights for parents.
+
+# SOC Prediction - LSTM based model for SOC prediction
+
+Tools: Python, TensorFlow
+
+- Led the development of an LSTM-based model to predict the State of Charge (SOC) of lithium-ion batteries, focusing on accurate time-series prediction.
+- Managed data preprocessing and end-to-end model development, optimizing performance through hyper parameter tuning and validation.
+- Successfully deployed the model, achieving high accuracy in SOC predictions, contributing to improved battery management solutions.
+
+# Cloud Kitchen Website Development
+
+Tools: HTML, CSS, JavaScript, Node js, MongoDB
+
+- Developed a dynamic website for a cloud kitchen using HTML, CSS, and JavaScript.
+- Built a robust back end with Express.js to ensure smooth functionality.
+- Designed a responsive, user-friendly interface to improve customer engagement.
+
+# SKILLS
+
+- Areas of Interest: Research and Development, AI/ML application, Full stack Development
+- Languages: C, Python, Java, JavaScript, Typescript, Node Js, Go, React Native, SQL
+- Technologies/Frameworks: LLM, RAG, HuggingFace, Machine Learning, Deep Learning, Generative AI, Firebase, MySQL
+
+# CERTIFICATES
+
+- Intro To ML And Deep Learning | IIT Madras - January 2024
+- Large Language Models | IIT Madras - January 2024
+- Fullstack Development | IIT Madras - January 2024
+- Information Architecture | Udemy - June 2023

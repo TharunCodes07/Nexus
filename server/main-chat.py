@@ -1,9 +1,9 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-# from rag import (
-#     rag,QueryParam
-# )
+from rag import (
+    rag,QueryParam
+)
 from resp import chat,chat2,chat3
 from vid import video_to_text, pdf_to_text
 import os
@@ -24,22 +24,13 @@ class QueryRequest1(BaseModel):
 class QueryRequest2(BaseModel):
     query:str
 
-class QueryRequest3(BaseModel):
-    summaries:list
-
-
-# @app.post("/query")
-# async def get_response(request: QueryRequest2):
-#     query=request.query
-#     context = rag.query(query, param=QueryParam(mode="hybrid",only_need_context=True))
-#     response = chat.predict(query=query, context_str=context)
-#     return {"response": response}
 
 @app.post("/pdf2word")
 async def convert_pdf_to_word(request: QueryRequest1):
     try:
         path = request.path
         document = pdf_to_text(path)
+        rag.insert(document)
         
         return {"text": document}
         
@@ -52,29 +43,21 @@ async def convert_video_to_word(request: QueryRequest1):
     try:
         path = request.path
         document = video_to_text(path)
+        rag.insert(document)
         return {"text": document}
     except Exception as e:
         print(f"Error converting video: {str(e)}")
         return {"error": "Failed to convert video"}
-
-# @app.post("/add")
-# async def insert(request: QueryRequest2):
-#     path=request.path
-#     output_folder = f""
-#     text = video_to_text(path,output_folder)
-#     rag.insert(text)
-#     print("Sucessfully Inserted")
-#     summary = chat2.predict(content=text)
-#     return {"summary":summary}
-
-@app.post("/summary")
-async def insert(request: QueryRequest3):
-    summary=request.summaries
-    combined_summary = ""
-    for i, string in enumerate(summary, start=1):
-        combined_summary += f"Summary{i} : {string}\n"
-    total_summary = chat3.predict(content=combined_summary)
-    return {"final_summary":total_summary}
+    
+@app.post("/query")
+async def query(request:QueryRequest2):
+    try:
+        query= request.query
+        context = rag.query(query,param=QueryParam(mode="hybrid"))
+        response = chat.predict(query=query,context=context)
+        return {"response":response}
+    except Exception as e:
+        return {"Error": "Failed to query"}
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth";
 import fs from 'fs/promises';
 import path from 'path';
+import { error } from "console";
 
 export async function POST(req: Request) {
   try {
@@ -17,7 +18,6 @@ export async function POST(req: Request) {
     const { chatId, content, fileName, type } = await req.json();
     const resolvedChatId = await Promise.resolve(chatId);
 
-  
     const chatFolder = path.join(process.cwd(), 'public', 'chats', resolvedChatId.toString());
     try {
       await fs.access(chatFolder);

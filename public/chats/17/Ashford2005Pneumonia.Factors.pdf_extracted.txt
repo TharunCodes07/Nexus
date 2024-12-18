@@ -1,0 +1,283 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/239311197
+
+# Pneumonia: Factors Beyond Aspiration
+
+Article in Perspectives on Swallowing and Swallowing Disorders (Dysphagia) · March 2005
+
+DOI: 10.1044/sasd14.1.10
+
+|CITATIONS|READS|
+|---|---|
+|4|1,131|
+
+# 1 author:
+
+John Ashford
+
+SA Swallowing Services, PLLC
+
+17 PUBLICATIONS 634 CITATIONS
+
+SEE PROFILE
+
+All content following this page was uploaded by John Ashford on 26 July 2016.
+
+The user has requested enhancement of the downloaded file.
+
+# Swallowing and Swallowing Disorders
+
+# Pneumonia: Factors Beyond Aspiration
+
+John R. Ashford
+
+VA Tennessee Valley Health Care System
+
+Nashville, TN
+
+# Introduction
+
+Aspiration and its potential danger to the respiratory system were described by Hippocrates in 400 B.C. Later, Hunter in 1781, Simpson in 1898, and Mendelson in 1946 described more clearly the clinical and pathological conditions associated with aspiration, including the potential for death (Chokshi, Asper, & Khandheria, 1986). Clinically, speech-language pathologists are asked to determine the efficiency and safety of the oropharyngeal swallow mechanism and to assist in determining the potential for pneumonia development. A perplexing question, however, is, “Why do some patients with dysphagia who aspirate develop pneumonia and others do not?” The purpose of this paper is to examine factors, other than laryngeal aspiration, that contribute to pneumonia development in some patients.
+
+# Pneumonia
+
+Pneumonia is an acute infection and inflammation of the alveoli pulmoni, or pits, at the cellular level of the lungs or its parenchyma (Dasaraju & Liu, 1996). Infection, or the presence of living pathogens within the tissue, develops when the resident immune defenses are insufficient to meet the challenge of bacterial or viral pathogens entering and colonizing the lower respiratory system (Wilson, 2003a). Inflammation is a bodily response that involves the delivery of fluid and immune properties through the blood system to the area of injury or necrosis to counter these invading pathogens. With pneumonia, infection and inflammation begin in the respiratory bronchioles and spread through extracellular fluid spaces over large areas of lung tissue, pouring into the alveoli. The diagnosis of nosocomial pneumonia, a subclass of pneumonia, is restricted to people developing the disease while in hospital or nursing facilities (Dasaraju & Liu, 1996; Wilson, 2003b). Nosocomial pneumonia usually has a bacterial origin. Among the more common microorganisms identified as causing nosocomial pneumonia are enteric gram-negative bacteria, or Staphylococcus aureus, and gram-negative aerobic bacteria, or Pseudomonas aeruginosa, Klebsiella pneumoniae, and Escherichia coli (Wilson). Viral-based nosocomial infections are relatively rare, usually seasonal, and caused by exposure to infected persons (Thompson, 1994). Tobin and Grenvik (1984) cited Sanford and Pierce’s observations that nosocomial pneumonia is usually not present or incubating at the time of admission, but symptoms begin to appear after the first 48 to 72 hours of admission. At higher risk are those patients who are intubated or in the critical care unit. Thompson reported that hospital stays increase 4 to 13 days in patients developing nosocomial pneumonia. In addition, patients who develop nosocomial pneumonia are at high risk for death.
+
+# Aspiration Pneumonia
+
+The larynx is the gatekeeper to the lower respiratory system. In this respect, its function is to prevent entry of foreign materials into the lower airway and to readily expel any foreign materials that may gain entry to the lower airway. Impairment of laryngeal innervation from stroke or impairment of cartilaginous and muscular structures of the larynx from treatments for cancer reduces laryngeal efficiency and impairs the timing of opening and closing. This increases the potential for aspiration. The relationship between laryngeal aspiration and pneumonia has been well recognized (Langmore et al., 1998). However, observational evidence of laryngeal inefficiency and aspiration provides but one piece to the complex puzzle of pulmonary infection.
+
+Marik (2001) defined aspiration pneumonia as an infection that develops after inhaling oropharyngeal pathogens into the lungs that have first colonized in the oropharynx. It represents 8% to 33% of all nosocomial infections (Tobin & Grenvik, 1984). However, the use of the term aspiration pneumonia is not without controversy. Jurado and Franco-Paredes (2001) stated that the use of this term should be discouraged because, “aspiration is a pathogenic mechanism for several inflammatory diseases of the lung, both infectious and noninfectious” (p. 1612). Inhaling large quantities of pathogens into the lower reaches of the respiratory tract is generally recognized as the probable cause of aspiration pneumonia (Jurado & Franco-Paredes, 2001; Skerrett et al., 1989; Tobin & Grenvik). Whether pneumonia develops from one or more episodes of aspiration depends on the volume of aspirated material, the characteristics of the aspirate (e.g., bacterial load, liquid versus particulate matter, pH level), the frequency of aspiration events, and the integrity of the immune system (Johnson & Hirsch, 2003; Langmore et al., 1998; Shockley, 1995). Patients may develop aspiration pneumonia as a response to one episode of aspiration of material. Others may experience epi-
+
+# Swallowing and Swallowing Disorders
+
+# March 2005
+
+# Pneumonia and Illness
+
+Aspiration pneumonia does not develop as a singular and independent disease entity. It is an opportunistic, secondary disease reliant upon the established presence of a serious illness from another disease or medical condition (Bartlett & Gorbach, 1975; Shafazand & Weinacker, 2002). Skerrett and colleagues (1989) reported, “The greater the degree of serious illness in a given patient, the more likely he or she is to have gram-negative colonization of the oropharynx.” (p. 470). The increasing severity of the underlying illness or physical disability provides significantly more opportunities for gram-negative bacteria colonization and for pneumonia to develop (Ramphal, 1994). Underlying serious illnesses often associated with aspiration pneumonia include chronic lung disease, cystic fibrosis, chronic cardiac disease, diabetes, malignancy, neurological disorders, azotemia, and renal failure (Salata & Ellner, 1988).
+
+# Mechanism of Stress
+
+Serious illnesses are classified as either acute or chronic. An acute condition is an illness or injury that lasts for less than 3 months, was first noticed less than 3 months before initial examination, and is serious enough to have an impact on behavior. A chronic condition is an illness that has not been cured once acquired, such as diabetes, heart disease, birth defects, or amputation. A chronic illness must be present for 3 months or longer (National Center for Health Statistics, 2004).
+
+The onset of a serious illness initiates a highly complex and significant physiological stress response. Stress is defined as the body’s reaction to physical, chemical, or emotional forces that cause bodily or mental tension disrupting normal physiologic equilibrium, or homeostasis. The stress response may also be a factor in causing disease (McEwen & Lasley, 2002; Mish et al., 1986; Spraycar et al., 1995). Homeostasis is constantly challenged by intrinsic or extrinsic adverse forces attempting to disrupt the balance of the body’s internal environment (Chrousos, 1998; Sheridan, Dobbs, Brown, & Zwilling, 1994).
+
+Dysphagia is a common symptom of many of these diseases, with pneumonia as a common secondary illness. If, within the context of the protracted stress response, the abrupt onset of an even more serious challenge occurs, such as a stroke, the stress mechanism increases its response and drives the body further into disequilibrium.
+
+Serious illness, such as stroke or surgery, challenges the survival of the patient. The physiological responses of stress resulting from a serious illness are mediated primarily through neurological, endocrine, and autonomic nervous system interconnections and integrate to maintain homeostasis. Regulation is carried out through two mechanisms: the hypothalamic-pituitary-adrenal (HPA) axis and the autonomic nervous system (ANS) (Carlson, 1994; McEwen & Lasley, 2002; Sheridan et al., 1994).
+
+In the 1930s, Selye described the “General Adaptation Syndrome.” This hypothesis suggested that the body has a sophisticated physiological mechanism capable of coping with a variety of challenges (McEwen & Lasley). For brief or milder challenges, the stress mechanism responds but subsides quickly as the body regains equilibrium. In some cases, these challenges are perceived as pleasant and become positive learning experiences.
+
+# Swallowing and Swallowing Disorders
+
+# March 2005
+
+Peripheral nervous system and communicate changes to heart rate, oxygen intake, glandular output, and cortisol levels in normal subjects. The hypercortisolemia that was found to be common among CVA patients correlated positively with acute confusion and extensive motor impairment. Furthermore, high levels of cortisol were associated with poorer functional outcomes and higher mortality. Similar findings were reported by Fassbender, Schmidt, Mossner, Daffertshofer, and Hennerici (1994). Slowik and colleagues (2002) compared cortisol and other blood products levels of 70 CVA patients and 24 matched controls. Patients were followed for 90 days. Results indicated that hypercortisolemia was associated with old age, greater neurological deficits, larger ischemic lesion on CT, and worse prognoses. Prolonged hypercortisolemia has also been associated with chronic underlying diseases such as diabetes, cardiovascular and cerebrovascular diseases, and hypertension (McEwen & Lasley, 2002).
+
+It is now apparent that the onset of illness, whether acute or chronic, initiates a dramatic counter-response by the body to protect and repair itself. Following the initial response to pathogenic processes, a counter-response can alter normal immune, glandular, and muscular functions. These changes may jeopardize the safety and efficiency of deglutition and safety of the lower respiratory system.
+
+# Immune Functions
+
+The immune system responds to illness by sending increased numbers of phagocytes into the bloodstream and to the site of inflammation. Phagocytes, or white blood cells, make up about 1% of the blood’s composition and specialize to serve a number of immune functions. Among these specialized cells, neutrophils are predominant. Their function is to specifically seek out and destroy bacteria (Janeway, Travers, Walport, & Shlomchik, 2001; Miyaski, 1991). Neutrophils cortisol levels in CVA patients to...
+
+# Swallowing and Swallowing Disorders
+
+# March 2005
+
+are part of the initial immune response and take one to 3 hours to arrive at the site of the inflammation (Cole & MacKay, 1990). Janeway and colleagues state that this initial immune response requires 4 to 7 days before producing a significant effect at the inflammation site. This coincides with Skerrett’s (1994) observations that the primary response by the immune system to pneumonia requires 5 to 7 days. These findings support Sanford and Pierce’s observations, as cited by Tobin and Grenvik (1984), that symptoms of nosocomial pneumonia are usually not present at the time of admission, but begin to appear after the first 48 to 72 hours of admission.
+
+The high risk of developing pneumonia within the first week following the onset of a serious illness is a significant clinical factor when assessing for dysphagia and potential aspiration. Decisions to feed or not to feed should be influenced by the current status of the immune system. In acute care settings, current blood test results are available in the patient’s medical record. Abnormally high white blood cell and, more specifically, neutrophil counts should alert the examining clinician that an infection exists and is not controlled. An elevated neutrophil count in concert with demonstrated laryngeal aspiration provides ample evidence that conditions are optimal for pneumonia to develop. Pneumonia will not occur unless both of these key factors are present.
+
+# Oropharyngeal and Tracheobronchial Environments
+
+Stress response activation reduces saliva and mucous production in the upper and lower respiratory systems. Saliva glands and mucous glands have rich blood supplies and are regulated by the ANS. These glands manufacture and transport saliva and mucous and their protein enzymes to the oropharyngeal cavity and the tracheobronchial tree to maintain environmental homeostasis. The viscosity of the mucous and saliva traps bacteria. The proteins in these secretions destroy the bacteria or inhibit them from adhering to the mucosa or cavity surfaces and colonizing (Bartlett & Gorbach, 1975; Gibson & Barrett, 1992; Scannapieco & Mylotte, 1996; Stockley, 1995). In healthy persons, one cubic centimeter of saliva contains approximately 10^6 or 100,000,000 bacterial pathogens that populate the oropharyngeal cavities at any given time (Langmore et al., 1998; Skerrett, 1994). Aspiration of 0.01 ml of oral contents (secretions, water, or food) can introduce 10^6 to 10^8 pathogens into the lower respiratory system (Tobin & Grenvik, 1984).
+
+Johanson, Pierce, and Sanford, as cited by Salata and Ellner (1988), reported that bacterial colonization of the oropharynx was found in 6% of normal individuals, 35% of moderately ill patients, and 73% of severely ill patients. A strong relationship has been shown between oropharyngeal bacteria and development of pneumonia (Mojon, 2002; Russell, Boylan, Kaslick, Scannapieco, & Katz, 1999; Scannapieco, 1999; Watando et al., 2004). With severe illness and activation of the HPA axis, the blood supply may be restricted, reducing levels of salivary and mucous enzymes manufactured by these glands. This decreases epithelium protection and allows increased bacterial colonization during illness (Scannapieco). Colonization occurs when bacteria penetrate the oral epithelium and adhere to the surfaces of the teeth. Here bacteria feed off of extracellular fluids and multiply (Peterson, 1996). Reduced volume and availability of these protective secretions permit rapid colonization. Within 12 hours, without adequate immune control, these bacteria can increase nearly 2.5 times (Stockley).
+
+Langmore and colleagues reported predictors of aspiration pneumonia among hospital patients and nursing home residents. Among the predictors were the number of decayed teeth, the number of medications taken, multiple medical diagnoses, and smoking. These factors alter the environmental integrity of the oropharyngeal cavity and the lower respiratory tract. Terpenning and colleagues (2001) reported a significant prevalence of decayed teeth and visible dental plaque among a group of patients with aspiration pneumonia. Many medications dehydrate the mucosa reducing epithelium protection. Smoking impairs the ciliary action of the mucociliary escalator reducing its ability to remove debris and pathogens from the airway. These findings support the need for good oral care of hospital patients and nursing home residents to help reduce growth and colonization of bacteria in the airway tracts (Watando et al.).
+
+# Muscle Functions
+
+With activation of the stress response, increases in adrenaline result in extraction of fatty acids, amino acids, and glucose from skeletal muscles and from adipose tissue. These fuels are sent to visceral organs to ensure their vital functions and to repair tissue injury (Wilmore, 2000). The result is a reduction in available energy for the mechanisms of digestion, including the muscles of deglutition. Seriously acute illness also reduces levels of oxygen and iron in the bloodstream resulting in weakness of the slow and fast twitch muscle fibers necessary for efficient swallowing (Chi-Fishman & Pfalzer, 2003; Hudson, Daubert, & Mills, 2000). With prolonged illnesses, this marked catabolic response may result in protein wasting and loss of lean body mass, which in turn, leads to impaired immunity, poor wound healing, and muscle weakness (Hadley & Hinds, 2002). Weakness of the oral and pharyngeal muscles may result in delayed swallow onset, reduced oral and pharyngeal peristalsis, and inefficient laryngeal function.
+
+# Swallowing and Swallowing Disorders
+
+March 2005
+
+geal opening and closing, which increases the risk of aspiration. Coupled with low red blood cell count, low hemoglobin and hematocrit values, an imbalance of electrolytes, and an elevated immune response, seriously ill patients become systemically debilitated. This condition is characterized by weakness, lethargy, and lack of energy, each with the potential of affecting swallowing and respiratory safety. Low counts among the red blood cell measures indicate a reduced ability to deliver oxygen and glucose to cells. Low red blood cell count and high white blood cell count are biochemical indicators of generalized debility. General debilitation affects oral, pharyngeal, and laryngeal efficiencies and may be responsible for dysphagia and aspiration.
+
+# Conclusion
+
+Laryngeal aspiration is not the sole cause of aspiration pneumonia. Aspiration pneumonia can only develop within the context of a primary and serious illness. A physiological stress response resulting from the onset of illness alters the neurological, endocrine, and immune systems to counteract the physiological effects of the illness and regain homeostasis. Clinicians should be aware of the complexity of serious illness and how the alterations to major systems of the body can lead to dysphagia and pneumonia. Assessment and treatment should move beyond observations of potential aspiration events and their causes and place these findings within the context of the patient’s total medical condition. Use of available information, such as diagnostic reports and laboratory values, will provide insight into the patient’s overall state of health and the various processes involved in recovery.
+
+John R. Ashford is a speech-language pathologist at the VA Tennessee Valley Health Care Medical Center, Nashville campus. He holds an assistant clinical professorship at the Vanderbilt University School of Medicine and an adjunct professorship at Tennessee State University. He chairs the VA Best Practices in Dysphagia Treatment Taskforce and is consultant to the Tennessee State Board of Health.
+
+# References
+
+Bartlett, J. G., & Gorbach, S. L. (1975). The triple threat of aspiration pneumonia. Chest, 68, 560-566.
+
+Carlson, N. R. (1994). Physiology of behavior. Boston: Allyn and Bacon.
+
+Chi-Fishman, G., & Pfalzer, L. A. (2003, November). Applying exercise physiology principles in oromotor rehabilitation for dysphagia. Paper presented at the ASHA annual Convention, Chicago.
+
+Chokshi, S. K., Asper, R. F., & Khandheria, B. K. (1986). Aspiration pneumonia: A review. American Family Practice, 33, 195-202.
+
+Chrousos, G. P. (1995). The hypothalamic-pituitary-adrenal axis and immune-mediated inflammation. The New England Journal of Medicine, 332, 1351-1362.
+
+Chrousos, G. P. (1998). Stressors, stress, and neuroendocrine integration of the adaptive response: The 1997 Hans Selye Memorial Lecture. Annals of the New York Academy of Sciences, 851, 311-335.
+
+Chrousos, G. P., & Gold, P. W. (1992). The concepts of stress and stress system disorders: Overview of physical and behavioral homeostasis. Journal of the American Medical Association, 267, 1244-1252.
+
+Cole, R. B., & Mackay, A. D. (1990). Essentials of respiratory disease (3rd ed.). Edinburgh: Churchill Livingstone.
+
+Dasaraju, P. V., & Liu, C. (1996). Infections of the respiratory system. In S. Baron (Ed.), Medical Microbiology (chap. 93) [Electronic version]. New York: Churchill Livingstone.
+
+Fassbender, K., Schmidt, R., Mossner, R., Daffertshofer, M., & Hennerici, M. (1994). Pattern of activation of the hypothalamic-pituitary-adrenal axis after acute stroke. Relation to acute confusional state, extent of brain damage, and clinical outcome. Stroke, 25, 1105-1108.
+
+Gibson, G., & Barrett, E. (1992). The role of salivary function on oropharyngeal colonization. Special Care in Dentistry, 12, 153-156.
+
+Hadley, J. S., & Hinds, C. J. (2002). Anabolic strategies in critical illness. Current Opinions in Pharmacology, 2, 700-707.
+
+Hardy, S. G. P., & Chronister, R. B. (1997). The hypothalamus. In D. E. Haines (Ed.), Fundamental neuroscience (pp. 432-442). New York: Churchill Livingstone.
+
+Hudson, H. M., Daubert, C. R., & Mills, R. H. (2000). The interdependency of protein-energy, malnutrition, aging and dysphagia. Dysphagia, 15, 31-38.
+
+Janeway, C. A., Travers, P., Walport, M., & Shlomchik, M. (2001). Principles of innate and adaptive immunity. In Immunobiology 5: The immune system in health and disease (Part 1) [Electronic version]. New York: Garland Publishing.
+
+Johnson, J. L., & Hirsch, C. S. (2003). Aspiration pneumonia. Recognizing and managing a potentially growing disorder [Electronic version]. Postgraduate Medicine, 113, 99-102, 105-106, 111-112.
+
+Jurado, R. L., & Franco-Paredes, C. (2001). Aspiration pneumonia: A misnomer [Letter to the editor] [Electronic version]. Clinical Infectious Diseases, 33, 1612-1613.
+
+Kannel, W. B., Anderson, K., & Wilson, P. W. F. (1992). White blood cell count and cardiovascular disease: Insights from the Framingham study. Journal of the American Medical Association, 267 (9), 1253-1256.
+
+Khawaja, I. T., Buffa, S. D., & Brandsetter, R. D. (1992). Aspiration pneumonia: A threat when deglutition is compromised. Postgraduate Medicine, 92, 165-181.
+
+Langmore, S. E., Terpenning, M. S., Schork, A., Chen, Y., Murray, J., Lopatin, D., & Loesche, W. J. (1998). Predictors of aspiration pneumonia: How important is dysphagia? Dysphagia, 13, 69-81.
+
+Marik, P. E. (2001). Aspiration pneumonitis and aspiration pneumonia. New England Journal of Medicine, 344 (9), 665-671.
+
+# Swallowing and Swallowing Disorders
+
+March 2005
+
+# References
+
+McEwen, B. S., & Lasley, E. N. (2002). The end of stress as we know it. Washington, DC: Joseph Henry.
+
+Mish, F. C. et al. (1986). Webster’s Ninth New Collegiate Dictionary. Springfield, MA: Merriam-Webster.
+
+Miyasaki, K. T. (1991). The neutrophil: Mechanisms of controlling periodontal bacteria. Journal of Periodontology, 62, 761-774.
+
+Mojon, P. (2002). Oral health and respiratory infection. Journal of the Canadian Dental Association, 68, 340-345.
+
+National Center for Health Statistics (2004, December). NCHS definitions. Retrieved December 9, 2004, from http://www.cdc.gov/nchs/datawh/nchsdefs/healthcondition.htm
+
+Nolte, J. (1999). The human brain: An introduction to its functional anatomy (4th ed.). St. Louis: Mosby.
+
+Olsson, T., Marklund, N., Gustafson, Y., & Näsman, B. (1992). Abnormalities at different levels of the hypothalamic-pituitary-adrenal cortical axis early after stroke. Stroke, 23, 1573-1576.
+
+Peterson, J. W. (1996). Pathogenic mechanisms. In S. Baron (Ed.), Medical microbiology (chap. 7) [Electronic version]. New York: Churchill Livingstone.
+
+Ramphal, R. (1994). Pathogenesis of airway colonization. In M. S. Niederman, G. A. Sarosi, & J. Glassroth (Eds.), Respiratory infections: A scientific basis for management (pp. 45-56). Philadelphia: W. B. Saunders.
+
+Rosmond, R., & Bjorntorp, P. (2000). The hypothalamic-pituitary-adrenal axis activity as a predictor of cardiovascular disease, type 2 diabetes, and stroke. Journal of Internal Medicine, 247, 188-197.
+
+Russell, S. L., Boylan, R. J., Kaslick, R. S., Scannapieco, F. A., & Katz, R. V. (1999). Respiratory pathogen colonization of the dental plaque of institutionalized elders. Special Care in Dentistry, 19, 128-134.
+
+Salata, R. A., & Ellner, J. J. (1988). Bacterial colonization of the tracheobronchial tree. Clinics in Chest Medicine, 9, 623-633.
+
+Scannapieco, F. A. (1999). Role of oral bacteria in respiratory infection. Journal of Periodontology, 70, 793-802.
+
+Scannapieco, F. A., & Mylotte, J. M. (1996). Relationships between periodontal disease and bacterial pneumonia. Journal of Periodontology, 67, 1114-1122.
+
+Schteingart, D. E. (2003). Adrenal hypersecretion disorders. In S. A. Price & L. M. Wilson (Eds.), Pathophysiology: Clinical concepts of disease processes (6th ed., pp. 924-937). St. Louis: Mosby.
+
+Shafazand, S., & Weinacker, A. B. (2002). Blood cultures in the critical care unit: Improving utilization and yield. Chest, 122, 1727-1736.
+
+Sheridan, J. F., Dobbs, C., Brown, D., & Zwilling, B. (1994). Psychoneuroimmunology: Stress effects on pathogenesis and immunity during infection. Clinical Microbiology Reviews, 7, 200-212.
+
+Shockley, R. A. (1995). Role of inflammation in respiratory tract infections. The American Journal of Medicine, 99, 8S-13S.
+
+Skerrett, S. J. (1994). Host defenses against respiratory infection. Medical Clinics of North America, 78, 941-966.
+
+Skerrett, S. J., Niederman, M. S., & Fein, A. M. (1989). Respiratory infections and acute lung injury in systemic illness. Clinics in Chest Medicine, 10, 469-502.
+
+Slowik, A., Turaj, W., Pankiewicz, J., Dziedzic, T., Szermer, P., & Szczudlik, A. (2002). Hypercortisolism in acute stroke is related to the inflammatory response. Journal of the Neurological Sciences, 196, 27-32.
+
+Spraycar, M., et al. (1995). Stedman’s medical dictionary (26th ed.). Baltimore: Williams & Wilkins.
+
+Terpenning, M. S., Taylor, G. W., Lopatin, D. E., Kerr, C. K., Dominguez, B. L., & Loesche, W. J. (2001). Aspiration pneumonia: Dental and oral risk factors in an older veteran population. Journal of the American Geriatric Society, 49, 557-563.
+
+Thompson, R. (1994). Prevention of nosocomial pneumonia. Medical Clinics of North America, 78, 1185-1198.
+
+# Questions
+
+1. Pneumonia is an acute inflammation and infection of the lung parenchyma. This inflammatory and infectious process begins
+
+in the trachea and spreads throughout the bronchi.
+2. in the alveoli pulmoni and spreads from one pulmonary unit to the next infecting large segments of the lung.
+3. in the respiratory bronchioles and spreads through extracellular spaces to the parenchyma.
+4. in the rich capillary supply surrounding each alveoli pulmoni and spreads through extracellular spaces to the parenchyma.
+
+Aspiration pneumonia can develop only
+
+because the body’s immune system is weak.
+as a result of poor laryngeal closure efficiency.
+
+# Swallowing and Swallowing Disorders
+
+# Stroke Patients and Aspiration Pneumonia
+
+c. when food is aspirated into the respiratory tract.
+
+d. within the context and presence of an existing serious illness.
+
+# 1. The phagocyte in the immune system that specifically locates and destroys bacteria is
+
+a. the white blood cell
+
+b. cortisol
+
+c. the neutrophil
+
+d. the hematocrit
+
+# 2. How does the stress response to seriously acute illness affect the oropharyngeal and tracheobronchial environments?
+
+a. It increases salivary and mucous production which enhances the immune system’s protection of the epithelium.
+
+b. It reduces sensation to the muscles and epithelial surfaces due to restricted blood supply.
+
+c. It reduces salivary and mucous production which reduces the immune system’s protection of the epithelium.
+
+d. It reduces salivary and mucous production which reduces lubrication of the oral cavity and impairs bolus formation and propulsion.
+
+# 3. Aspiration pneumonia can only develop
+
+a. when food carrying a concentrated bacterial load passes through the larynx.
+
+b. when food passes through the larynx and reaches the trachea and bronchi.
+
+c. when any contents carrying a concentrated bacterial load from the oropharynx or from the stomach pass through the larynx into an immune-compromised lower respiratory tract.
+
+d. the red blood cell count is high and the white blood cell count is low.
+
+# 4. Epidemiology of Stroke
+
+Stroke is one of the most common and devastating clinical disorders that can affect any person. A stroke is characterized by the sudden and rapid development of clinical symptoms and signs due to focal or global loss of cerebral function that lasts more than 24 hours or leading to death within that period. In all clinical cases there is no apparent cause other than that of vascular origin (Hatano, 1976).
+
+While some of the additional financial impact of stroke is due to long-term care, most of the resultant increased costs are due to greater requirement for acute care and rehabilitation, rather than long-term care. It is well documented that 74% of patients still need some help with activities of daily living such as washing, dressing, and feeding themselves even 3 months after stroke (Dewey et al., 2002).
+
+# 5. Pathophysiology of Stroke
+
+A stroke occurs when the blood supply to part of the brain is interrupted. The majority of strokes are due to the blockage of an artery by either clot or plaque within the vessel. A smaller but significant number of strokes are due to hemorrhage from a ruptured vessel that results in a dependent area of brain tissue being deprived of its supply of oxygen and nutrients, thus becoming necrotic.
+
+Whatever the underlying pathophysiology, functions that were normally supplied by that area of brain tissue are therefore lost.
+
+# Clinical Features
+
+All clinical symptoms and signs depend on the areas of the brain that are affected by the stroke, irrespective of whether an infarct or a hemorrhage has occurred. These include paralysis of the limbs and trunk on one side of the body, an inability to speak or understand speech and problems with swallowing and/or vision. Immediately following a stroke there may be altered levels of consciousness with patients being very drowsy or even unconscious.
+
+In the United Kingdom (UK), more than 100,000 people each year suffer their first stroke. Worldwide, after myocardial infarction and cancer, stroke is the third most common cause of death (Thorvaldsen, Asplund, Kuulasmaa, Rajakangas, & Schroll, 1995). The annual incidence of first stroke without adjustment for age, gender or race is calculated to be approximately 2.4/1,000 head of population. This rises with increasing age, such that the incidence for those aged over 85 years is 10 per 1,000 head of population (Wade & Hewer, 1987). In the UK, stroke causes an estimated 60,000 deaths per annum (ONS Mortality Statistics Cause, 1997). In the UK, the cost of strokes to the National Health Service (NHS) is estimated to be at least £2.3 billion per annum, with at least 25% of long term and 20% of acute care beds being occupied by patients following a stroke.
+
+While these statistics show that stroke is an ever increasing problem worldwide, it may still be a gross underestimate, as some authors such as Leibson and colleagues (1998) have found that as many as 45% of stroke patients are never admitted to a hospital and, thus, may not be identified in statistical summaries. In addition, sudden death may not be attributed to stroke.

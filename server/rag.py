@@ -29,12 +29,3 @@ rag = LightRAG(
         ),
     ),
 )
-
-
-
-with open(r"D:\Coding\notebooklm\server\mixed_data\output_text.txt", "r", encoding="utf-8") as f:
-    rag.insert(f.read())
-
-print(
-    rag.query("What is linear Regression?", param=QueryParam(mode="hybrid",only_need_context=True))
-)
